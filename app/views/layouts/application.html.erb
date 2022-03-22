@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VintageSharing</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+        <nav class = "navbar navbar-inverse">
+          <div class= "container-fluid ">
+            <div class = "navbar-header">
+              <h2><%= link_to "ロゴ画像", root_path, class: "nav-link" %></h2>
+            </div>
+            <div class="row" >
+              <div class= "link">
+                <ul class= "nav navbar-nav  flex-row">
+                  <% if member_signed_in? %>
+                    <li><%= link_to "投稿する"%></li>
+                    <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+                  <% elsif admin_signed_in? %>
+                    <li><%= link_to "会員一覧", admin_members_path, class: "fas fa-users nav-link link" %></li>
+                    <li><%= link_to "投稿一覧", class: "link" %></li>
+                    <li><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link link"  %></li>
+                  <% else %>
+                    <li><%= link_to "投稿する" %></li>
+                    <li><%= link_to "新規登録", new_member_registration_path  %></li>
+                    <li><%= link_to "ログイン", new_member_session_path %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <%= yield %>
+  </body>
+</html>

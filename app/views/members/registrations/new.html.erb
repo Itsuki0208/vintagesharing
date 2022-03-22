@@ -1,0 +1,56 @@
+<h2>新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "members/shared/error_messages", resource: resource %>
+
+ <div class="field">
+    <%= f.label :nick_name, 'ニックネーム'%><br />
+    <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender, "性別" %><br />
+    <%= f.label :男性 %>
+    <%= f.radio_button :gender, :男性 %>
+    <%= f.label :女性 %>
+    <%= f.radio_button :gender, :女性 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age, "年代" %><br />
+    <!--f.select( プロパティ名, タグの情報, {オプション}, {HTMLオプション} )-->
+    <!--プロパティ名 : カラム名 (下記に補足あり)-->
+    <!--タグの情報 : セレクトボックス表示に使うデータの配列 or ハッシュ-->
+    <!--オプション : セレクトボックスのオプション（include_blank, selected, promptなど）-->
+    <!--HTMLオプション : HTMLのオプション (id, classなど)-->
+    <%= f.select :age, [['10代前半', 0], ['10代後半', 1], ['20代前半', 2], ['20代後半', 3], ['30代前半', 4], ['30代後半', 5], ['40代前半', 6], ['40代後半', 7], ['50代以上', 8]], {prompt: '選択してください'} %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %><br />
+    <!--<% if @minimum_password_length %>-->
+    <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
+    <!--<% end %><br />-->
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
+
+<div class="field">
+  <span>既に登録済みの方はこちらへ</span>
+  <%= link_to "こちら", new_member_session_path %><span>からログインしてください</span>
+</div>
