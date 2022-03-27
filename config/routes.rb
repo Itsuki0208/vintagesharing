@@ -9,9 +9,14 @@ Rails.application.routes.draw do
     root 'homes#top'
   end
 
+  scope :members do
+    get '/members/mypages/:id' => 'public/members#show', as: 'mypages'
+  end
+
   namespace :public do
     # ↓topページをルートパスにするために設定する。↓
-    resources :members, only:[:show, :edit, :update]
+    resources :members, only: [:edit, :update]
+    resources :posts, only: [:new, :create, :show, :edit, :update]
   end
 
   devise_for :admins, {

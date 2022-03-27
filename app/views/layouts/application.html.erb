@@ -20,7 +20,8 @@
               <div class= "link">
                 <ul class= "nav navbar-nav  flex-row">
                   <% if member_signed_in? %>
-                    <li><%= link_to "投稿する"%></li>
+                    <li><%= link_to "マイページ", mypages_path(current_member.id), class: "fa-thin fa-camera" %></li>
+                    <li><%= link_to "投稿する", new_public_post_path %></li>
                     <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
                   <% elsif admin_signed_in? %>
                     <li><%= link_to "会員一覧", admin_members_path, class: "fas fa-users nav-link link" %></li>

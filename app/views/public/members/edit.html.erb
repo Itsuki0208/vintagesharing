@@ -1,0 +1,40 @@
+<h2>編集画面</h2>
+<%= form_with model:@member, url:public_member_path, local:true do |f| %>
+  
+    <table class='table'>
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag @member, :prof_img, :fill, 60,60, fallback:'no-img.png'%><br /><br />
+              <%= f.attachment_field:prof_img, placeholder: 'プロフィール画像'%>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.text_field:nick_name, autofocus:true, placeholder: 'ニックネーム' %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :age, "年代" %><br />
+            <!--f.select( プロパティ名, タグの情報, {オプション}, {HTMLオプション} )-->
+            <!--プロパティ名 : カラム名 (下記に補足あり)-->
+            <!--タグの情報 : セレクトボックス表示に使うデータの配列 or ハッシュ-->
+            <!--オプション : セレクトボックスのオプション（include_blank, selected, promptなど）-->
+            <!--HTMLオプション : HTMLのオプション (id, classなど)-->
+            <%= f.select :age, [['10代前半', 0], ['10代後半', 1], ['20代前半', 2], ['20代後半', 3], ['30代前半', 4], ['30代後半', 5], ['40代前半', 6], ['40代後半', 7], ['50代以上', 8]], {prompt: '選択してください'} %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :gender, "性別" %><br />
+            <%= f.label :男性 %>
+            <%= f.radio_button :gender, :男性 %>
+            <%= f.label :女性 %>
+            <%= f.radio_button :gender, :女性 %>
+          </td>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
+    <%= f.submit '編集登録' %>
+<% end %>
+
+<!--年代と性別が文字列ではなく、数値で表示される。-->

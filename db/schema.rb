@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_133615) do
+ActiveRecord::Schema.define(version: 2022_03_27_125205) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2022_03_22_133615) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -32,13 +38,38 @@ ActiveRecord::Schema.define(version: 2022_03_22_133615) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "members"
     t.integer "gender"
-    t.string "prof_img"
+    t.string "prof_img_id"
     t.boolean "is_active", default: true, null: false
     t.integer "age"
+    t.string "nick_name"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "post_images", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.string "image_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "shop_name"
+    t.string "shop_name_kana"
+    t.string "telephone_number"
+    t.string "address"
+    t.string "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts_genre_relations", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

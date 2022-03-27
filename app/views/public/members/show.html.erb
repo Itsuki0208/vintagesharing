@@ -1,0 +1,27 @@
+<div class="container px-5 px-la-0", style= "margin-top:50px;">
+    <div class="row">
+        <div class='col-md-6'>
+            <h2>プロフ画像</h2>
+             <%= image_tag('vintage.png') %>
+             <!--プロフ画像円形にする-->
+        </div>
+         <div class='col-md-4'>
+            <h3><%= @member.nick_name %></h3><br />
+            <h3><%= @member.age %></h3>
+            <h3><%= @member.gender %></h3>
+            <h3>好きなジャンル.1</h3>
+            <h3>好きなジャンル.2</h3>
+            <h3>好きなジャンル.3</h3>
+        </div>
+        <div class='col-md-2'>
+            <%= link_to '設定', edit_public_member_path(@member) %>
+        </div>
+    </div>
+</div>
+
+<div class= "row">
+    <div class="col-md-3" style="background:#CCC;height:250px;">カラムA</div>
+    <div class="col-md-3" style="background:#999;height:250px;">カラムB</div>
+    <div class="col-md-3" style="background:#CCC;height:250px;">カラムCharacter</div>
+    <div class="col-md-3" style="background:#999;height:250px;">カラムD</div>
+</div>

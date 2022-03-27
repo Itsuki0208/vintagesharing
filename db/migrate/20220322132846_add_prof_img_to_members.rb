@@ -1,5 +1,5 @@
 class AddProfImgToMembers < ActiveRecord::Migration[5.2]
   def change
-    add_column :members, :prof_img, :string
+    add_column :members, :prof_img, :string, null: 
   end
 end
